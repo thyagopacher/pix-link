@@ -1,14 +1,15 @@
 <?php
 
 require 'PixPayload.php';
-require 'PixQrCode.php';
+require './vendor/autoload.php';
 
-$payload = PixPayload::gerar(
-    '05820810929',
-    'THYAGO HENRIQUE PACHER',
-    'SAO PAULO',
-    50.00,
-    'Pedido 123'
-);
+use chillerlan\QRCode\QRCode;
 
-PixQrCode::gerarImagem($payload);
+$chave = '05820810929'; // chave aleatória
+$nome = 'THYAGO HENRIQUE PACHER';
+$cidade = 'PONTA GROSSA';
+$valor = 1.65;
+$payload = PixPayload::gerar($chave, $nome, $cidade, $valor);
+
+$qrcode = (new QRCode)->render($payload);
+echo '<img width="360" height="360" src="' . $qrcode . '" alt="QR Code PIX"/>';
