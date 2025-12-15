@@ -2,7 +2,6 @@
 
 require './vendor/autoload.php';
 
-use chillerlan\QRCode\QRCode;
 use ThyagoPacher\PixLink\PixQrcode;
 
 $chave = '05820810929'; // chave aleatória
