@@ -5,7 +5,7 @@ namespace ThyagoPacher\PixLink;
 class PixPayload
 {
 
-    public static function gerar($chavePix, $nomeRecebedor, $cidade, $valor = null, $txid = 'TX12345') {
+    public static function gerar(string $chavePix, string $nomeRecebedor, string $cidade, ?float $valor = null, string $txid = 'TX12345') {
         $valorFormatado = $valor ? number_format($valor, 2, '.', '') : null;
 
         $payload = [
