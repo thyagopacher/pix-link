@@ -5,7 +5,20 @@ namespace ThyagoPacher\PixLink;
 class PixPayload
 {
 
-    public static function gerar(string $chavePix, string $nomeRecebedor, string $cidade, ?float $valor = null, string $txid = 'TX12345') {
+    /**
+     * Gerar function
+     *
+     * @param string $chavePix
+     * @param string $nomeRecebedor
+     * @param string $cidade
+     * @param float $valor
+     * @param string $txid
+     * 
+     * @return void
+     * 
+     * @author Thyago Henrique Pacher <thyago.pacher@gmail.com.br>
+     */
+    public static function gerar(string $chavePix, string $nomeRecebedor, string $cidade, float $valor, string $txid = 'TX12345') {
         $valorFormatado = $valor ? number_format($valor, 2, '.', '') : null;
 
         $payload = [

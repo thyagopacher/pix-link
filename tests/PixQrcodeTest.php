@@ -15,7 +15,13 @@ class PixQrcodeTest extends TestCase
         $valor = 1.65;      
         $width = 360;
         $height = 360;
-        $qrcodeHtml = PixQrcode::gerar($chavePix, $nomeRecebedor, $cidade, $valor, $width, $height);
+
+        $qrcodeHtml = (new PixQrcode)->chavePix($chavePix)
+            ->nomeRecebedor($nomeRecebedor)
+            ->cidade($cidade)
+            ->valor($valor)
+            ->gerar($width, $height);
+
         $this->assertStringContainsString('<img', $qrcodeHtml);
         $this->assertStringContainsString('src="data:image/', $qrcodeHtml);
     }

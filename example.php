@@ -10,4 +10,8 @@ $cidade = 'PONTA GROSSA';
 $valor = 1.65;
 $width = 360;
 $height = 360;
-echo PixQrcode::gerar($chave, $nome, $cidade, $valor, $width, $height);
+echo (new PixQrcode)->chavePix($chave)
+    ->nomeRecebedor($nome)
+    ->cidade($cidade)
+    ->valor($valor)
+    ->gerar($width, $height);
