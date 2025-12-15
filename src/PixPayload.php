@@ -1,5 +1,7 @@
 <?php
 
+namespace ThyagoPacher\PixLink;
+
 class PixPayload
 {
 
