@@ -15,8 +15,7 @@ $chave = 'xxxx'; // chave aleatória
 $nome = 'THYAGO HENRIQUE PACHER';
 $cidade = 'PONTA GROSSA';
 $valor = 1.65;
-$width = 360;
-$height = 360;
+
 echo (new PixQrcode)->chavePix($chave)
     ->nomeRecebedor($nome)
     ->cidade($cidade)
