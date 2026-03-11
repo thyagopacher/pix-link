@@ -20,7 +20,11 @@ class PixPayload
      */
     public static function gerar(string $chavePix, string $nomeRecebedor, string $cidade, float $valor, string $txid = 'TX12345'): string 
     {
-        $valorFormatado = $valor ? number_format($valor, 2, '.', '') : null;
+        if (empty($valor)) {
+            throw new \InvalidArgumentException('Valor deve ser maior que zero');
+        }
+        
+        $valorFormatado = $valor ? number_format($valor, 2, '.', '') : 0.0;
 
         $payload = [
             '00' => '01', // Payload Format Indicator
