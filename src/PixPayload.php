@@ -14,11 +14,12 @@ class PixPayload
      * @param float $valor
      * @param string $txid
      * 
-     * @return void
+     * @return string
      * 
      * @author Thyago Henrique Pacher <thyago.pacher@gmail.com.br>
      */
-    public static function gerar(string $chavePix, string $nomeRecebedor, string $cidade, float $valor, string $txid = 'TX12345') {
+    public static function gerar(string $chavePix, string $nomeRecebedor, string $cidade, float $valor, string $txid = 'TX12345'): string 
+    {
         $valorFormatado = $valor ? number_format($valor, 2, '.', '') : null;
 
         $payload = [
