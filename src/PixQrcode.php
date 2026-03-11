@@ -76,8 +76,9 @@ class PixQrcode
 
             $payload = PixPayload::gerar($this->chavePix, $this->nomeRecebedor, $this->cidade, $this->valor);
             $qrcode = (new QRCode)->render($payload);
+            $title = 'QR Code PIX - ' . $this->nomeRecebedor. ' - ' . $this->cidade . ' - R$ ' . number_format($this->valor, 2, ',', '.');
 
-            return '<img width="'.$width.'" height="'.$height.'" src="' . $qrcode . '" alt="QR Code PIX"/>';
+            return '<img title="'.$title.'" width="'.$width.'" height="'.$height.'" src="' . $qrcode . '" alt="QR Code PIX"/>';
         } catch (\Exception $e) {
             throw new Exception('Erro ao gerar QR Code: ' . $e->getMessage());
         }
