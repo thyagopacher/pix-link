@@ -1,6 +1,6 @@
 ## Gera Qrcode PIX via PHP
 
-Sem dependências gerais para qualquer pacote a mais.
+Sem dependências gerais para qualquer pacote a mais. Não é necessário uma conta no banco para gerar o qrcode pois ele usa o padrão FEBRABAN para identificar o pagamento e converter em uma string EMV. Após gerar essa string basta converter para qrcode e está pronto todo necessário.
 
 -Requisitos PHP 8.4
 
