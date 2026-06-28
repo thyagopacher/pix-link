@@ -25,4 +25,17 @@ class PixQrcodeTest extends TestCase
         $this->assertStringContainsString('<img', $qrcodeHtml);
         $this->assertStringContainsString('src="data:image/', $qrcodeHtml);
     }
+
+    public function testGerarQrcodeMissingFieldsThrows()
+    {
+        $this->expectException(\Exception::class);
+
+        // Missing valor (zero)
+        $qrcode = new PixQrcode();
+        $qrcode->chavePix('XXXX')
+               ->nomeRecebedor('Nome')
+               ->cidade('Cidade')
+               ->valor(0.0)
+               ->gerar();
+    }
 }
