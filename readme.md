@@ -1,32 +1,55 @@
-## Gera Qrcode PIX via PHP
+# pix-link
 
-Sem dependências gerais para qualquer pacote a mais. Não é necessário uma conta no banco para gerar o qrcode pois ele usa o padrão FEBRABAN para identificar o pagamento e converter em uma string EMV. Após gerar essa string basta converter para qrcode e está pronto todo necessário.
+Gera QR Code PIX (PIX Link) em PHP de forma simples e sem necessidade de conta bancária. Converte os dados no padrão EMV/FEBRABAN e gera a imagem do QR Code (data URI) pronta para uso em aplicações web.
 
--Requisitos PHP 8.4
+Principais pontos:
 
--Depende da lib chillerlan/php-qrcode é usado unicamente para converter o texto para QrCode.
+- Zero configuração: gere o payload do PIX e converta em QR Code usando chillerlan/php-qrcode.
+- Testes unitários com PHPUnit.
+- Implementação compatível com PHP 8.x.
 
-## Instalação (rápido)
-Entrar no bash com o comando, ele irá baixar tudo o necessário para usar em seu projeto
+## Instalação
+
+Instale via Composer:
+
 ```bash
 composer require thyago.pacher/pix-link
 ```
 
-## Exemplo de geração do QrCode .
-![Exemplo de QR Code Pix](docs/qrcode-pix-link.png)
+## Uso rápido
 
-Código usado para geração de QrCode PIX - no padrão Febrapan
-```
-$chave = 'xxxx'; // chave aleatória
-$nome = 'THYAGO HENRIQUE PACHER';
-$cidade = 'PONTA GROSSA';
-$valor = 1.65;
-$width = 360;
-$height = 360;
+```php
+use ThyagoPacher\\PixLink\\PixQrcode;
+
+$chave = 'suachave@banco.com';
+$nome = 'NOME DO RECEBEDOR';
+$cidade = 'CIDADE';
+$valor = 10.50;
+
 echo (new PixQrcode)->chavePix($chave)
     ->nomeRecebedor($nome)
     ->cidade($cidade)
     ->valor($valor)
-    ->gerar($width, $height);
-
+    ->gerar(360, 360);
 ```
+
+A função gera um `<img>` com atributo `src` contendo a imagem em data URI (image/png).
+
+## Testes
+
+Rode os testes com PHPUnit (já listado como require-dev no composer.json):
+
+```bash
+composer install --dev
+vendor/bin/phpunit --testdox
+```
+
+## Principais melhorias nesta branch
+
+- Correção no cálculo do CRC16 (o cálculo agora considera o placeholder '0000' durante a checagem, conforme especificação EMV).
+- Novos testes unitários cobrindo CRC, casos de erro e validações.
+- README com guia de uso, instalação e execução de testes.
+
+## Licença
+
+MIT

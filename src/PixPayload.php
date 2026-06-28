@@ -16,7 +16,7 @@ class PixPayload
      * 
      * @return string
      * 
-     * @author Thyago Henrique Pacher <thyago.pacher@gmail.com.br>
+     * @author Thyago Henrique Pacher <thyago.pacher@gmail.com>
      */
     public static function gerar(string $chavePix, string $nomeRecebedor, string $cidade, float $valor, string $txid = 'TX12345'): string 
     {
@@ -49,9 +49,10 @@ class PixPayload
             }
         }
 
-        // Adiciona CRC16
-        $emv .= '6304';
-        $emv .= strtoupper(self::crc16($emv));
+        // Adiciona CRC16: calcule sobre a string + '6304' + '0000' (placeholder), conforme especificação EMV
+        $emvForCrc = $emv . '6304' . '0000';
+        $crc = strtoupper(self::crc16($emvForCrc));
+        $emv .= '6304' . $crc;
 
         return $emv;
     }
